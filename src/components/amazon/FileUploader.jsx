@@ -2,31 +2,44 @@ import axios from "axios";
 
 import { getFingerprint } from "../../services/identity.service";
 
-const getPresignedUrl = async (fileName) => {
+const getPresignedUrl = async (file) => {
     const fingerprint = await getFingerprint();
-    const response = await axios.post(process.env.REACT_APP_API_URL + "/file", {
-        params: {
-            fingerprint: fingerprint,
-            fileName: fileName
-        }
-    });
 
+    const data = {
+        fingerprint: fingerprint,
+        file_name: file.name,
+        content_type: file.type
+    }
+
+    const response = await axios.post(process.env.REACT_APP_API_URL + "/file/initialize", data);
     return response.data
 }
 
 const uploadFile = async (file) => {
-    const presignedUrlResponse = await getPresignedUrl(file.name);
-    const { fields, url } = presignedUrlResponse;
+    try {
+        const presignedUrlResponse = await getPresignedUrl(file);
+        const { fields, url } = presignedUrlResponse;
+    
+        const formData = new FormData();
+        Object.keys(fields).forEach(key => {
+            formData.append(key, fields[key]);
+        });
 
-    const formData = new FormData();
-    formData.append('file', file);
+        formData.append('file', file);
+    
+        const response = await axios.post(url, formData);
+        if (response.status >= 200 && response.status <= 300) {
+            axios.post(process.env.REACT_APP_API_URL + "/file/process", { key: fields['key'] });
+            return true;
+        } else {
+            console.log("failed to upload file", response.status, response.statusText);
+        }
 
-    Object.keys(fields).forEach(key => {
-        formData.append(key, fields[key]);
-    });
+    } catch (error) {
+        console.log("failed to upload file", error.message);
+    }
 
-    const response = await axios.post(url, formData);
-    console.log("file uploaded successfully", response);
+    return false;
 }
 
 export { getPresignedUrl, uploadFile };

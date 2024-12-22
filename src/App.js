@@ -9,10 +9,13 @@ function App() {
   useEffect(() => {
     if (selectedFile) {
       async function upload() {
-        uploadFile(selectedFile);
+        const response = await uploadFile(selectedFile);
+        if (response != null) {
+        
+        }
       }
-      const response = upload();
-      console.log(response);
+
+      upload();
     }
   }, [selectedFile]);
 

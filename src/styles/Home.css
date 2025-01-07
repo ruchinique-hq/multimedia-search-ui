@@ -1,0 +1,22 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.home-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-section {
+  flex: 70%;
+  
+}
+
+.right-section {
+  flex: 30%;
+  padding: 20px;
+  background-color: #fafafa;
+}

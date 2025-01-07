@@ -1,8 +1,17 @@
-.App {
-  width: 80%;
+.app {
+  /* width: 80%;
   margin: 0 auto;
   padding: 20px;
-  box-sizing: border-box; 
+  box-sizing: border-box;  */
+  display: flex;
+}
+
+.search {
+  width: 70%;
+}
+
+.library {
+  width: 30%;
 }
 
 .App-Container {

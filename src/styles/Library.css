@@ -1,0 +1,16 @@
+
+.library-container .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.library-container .section {
+    margin-bottom: 2em;
+}
+
+.library-container .section-title {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}

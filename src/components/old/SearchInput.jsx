@@ -66,7 +66,7 @@ const SearchInput = () => {
     }
 
     return (<>
-        <h1 className='search-input-title'> Search Beyond Words </h1>
+        <h1 className='search-input-title'>Search Beyond Words </h1>
         <p className='search-input-sub-title'> Discover the world in a way words alone can't capture! </p>
 
         <div className='search-input-container'>

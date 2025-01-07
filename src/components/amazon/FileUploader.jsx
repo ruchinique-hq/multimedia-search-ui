@@ -2,9 +2,7 @@ import axios from "axios";
 
 import { getFingerprint } from "../../services/identity.service";
 
-const getPresignedUrl = async (file) => {
-    const fingerprint = await getFingerprint();
-
+const getPresignedUrl = async (fingerprint, file) => {
     const data = {
         fingerprint: fingerprint,
         file_name: file.name,
@@ -17,7 +15,9 @@ const getPresignedUrl = async (file) => {
 
 const uploadFile = async (file) => {
     try {
-        const presignedUrlResponse = await getPresignedUrl(file);
+        const fingerprint = await getFingerprint();
+        
+        const presignedUrlResponse = await getPresignedUrl(fingerprint, file);
         const { fields, url } = presignedUrlResponse;
     
         const formData = new FormData();
@@ -29,7 +29,11 @@ const uploadFile = async (file) => {
     
         const response = await axios.post(url, formData);
         if (response.status >= 200 && response.status <= 300) {
-            axios.post(process.env.REACT_APP_API_URL + "/file/process", { key: fields['key'] });
+            axios.post(process.env.REACT_APP_API_URL + "/file/process", { 
+                fingerprint: fingerprint,
+                key: fields['key'],
+                
+            });
             return true;
         } else {
             console.log("failed to upload file", response.status, response.statusText);

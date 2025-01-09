@@ -9,6 +9,8 @@ import { setSearchQuery, setSelectedFile, addToHistory } from "../store/searchSl
 
 import { uploadFile } from "./amazon/FileUploader";
 
+import { getFingerprint } from "../services/identity.service";
+
 import "../styles/Search.css";
 
 function Search() {

@@ -1,0 +1,21 @@
+.app {
+  /* width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;  */
+  display: flex;
+}
+
+.search {
+  width: 70%;
+}
+
+.library {
+  width: 30%;
+}
+
+.App-Container {
+  max-width: 600px;
+  margin: 40px auto;
+  color: #111;
+} 

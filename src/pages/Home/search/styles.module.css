@@ -1,0 +1,68 @@
+.searchContainer {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 1em;
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.description {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 25px;
+  padding: 0.5em 1em;
+  width: 65%;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  resize: none;
+  outline: none;
+  border: none;
+  background: none;
+  width: 100%;
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  align-self: center;
+  font-family: "Montserrat";
+}
+
+.submitButton {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
